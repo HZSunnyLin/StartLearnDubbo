@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--配置消费者应用名称
+        name:消费者应用名称，注意和提供者的名字是不一样的。
+      -->
+    <dubbo:application name="${dubbo.application.name}" />
+
+    <!--配置消费者向zookeeper注册自己，然后获取服务提供者的URL
+        protocol：
+        address:
+        check:
+        register:
+      -->
+    <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" check="false" register="true" />
+
+    <!--配置服务消费者的访问协议，rpc协议
+        name:协议名称
+        port:服务消费者启动的本地端口，因为服务暴露在20880端口，如果在同一台机器时，端口切勿一致
+      -->
+    <dubbo:protocol name="dubbo" port="20884" />
+
+    <!--配置服务消费者的监控
+        protocol:
+      -->
+    <dubbo:monitor protocol="registry" />
+
+    <!--配置服务消费者消费哪个服务，消费组别，服务版本号，是否启动时检查
+        id:bean的id号，可以和服务提供者的bean id一致，亦可以另起个id，但是和代码里getbean(beanid)一致
+        interface:配置服务提供者提供的接口，即服务消费者要消费的接口
+        group:服务消费者的消费组
+        version:dubbo接口的版本，一定要和服务提供者提供的dubbo的接口版本一致，因为要拼接服务请求url
+        check:
+      -->
+    <dubbo:reference id="dubboserviceapi" interface="DubboAPI.dubboServiceAPI" group="${dubbo.Consumer.group}" version="1.0" check="false" />
+
+</beans>
