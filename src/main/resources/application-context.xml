@@ -4,6 +4,12 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--
+      $ component-scan:标示需要扫描base-pacakge标签名的值对应的路径下接口实现文件中的spring注解
+      $ base-package:接口实现类的包路径
+      @# 如果import标签里引入的xml文件中没有定义bean标签，并且接口的实现代码中加入了spring注解，
+         则需要这个标签
+      -->
     <context:component-scan base-package="learndemo.dubboservice" />
 
     <import resource="classpath:applicationProvider.xml" />
