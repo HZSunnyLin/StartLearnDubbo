@@ -15,7 +15,7 @@
     <dubbo:application name="${dubbo.application.name}" owner="${dubbo.application.owner}" organization="" logger="" environment=""/>
 
     <!--定义服务使用的rpc协议，服务的端口号，是否开启日志
-        id:
+        id:协议的id，对应于一个java bean，部署线上时建议不要这个id，否则会报 duplicate java bean id default
         name:
         port:
         accesslog:
@@ -34,8 +34,10 @@
     <!--定义具体的bean
         id:对应于service标签中ref的指
         class:对应实现接口的具体类
+        注：如果provider.xml中这个不写，实现接口的代码要加spring注解，进行依赖注入，同时application-context.xml中需要加入
+        <context:component-scan base-package="learndemo.dubboservice" />
       -->
-    <bean id="dubboserviceapi" class="learndemo.dubboservice.dubboServiceAPIImpl"/>
+    <bean id="dubboServiceAPI" class="learndemo.dubboservice.dubboServiceAPIImpl"/>
 
     <!--定义服务的提供者
         delay:
@@ -52,6 +54,6 @@
         interface：服务对应的接口
         ref：接口参照的具体实现，对应bean中的id
       -->
-    <dubbo:service interface="DubboAPI.dubboServiceAPI" ref="dubboserviceapi" />
+    <dubbo:service interface="DubboAPI.dubboServiceAPI" ref="dubboServiceAPI" />
 
 </beans>
