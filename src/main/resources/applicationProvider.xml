@@ -37,7 +37,7 @@
         注：如果provider.xml中这个不写，实现接口的代码要加spring注解，进行依赖注入，同时application-context.xml中需要加入
         <context:component-scan base-package="learndemo.dubboservice" />
       -->
-    <bean id="dubboServiceAPI" class="learndemo.dubboservice.dubboServiceAPIImpl"/>
+    <bean id="dubboServiceAPI" class="learndemo.dubboservice.DubboServiceAPIImpl"/>
 
     <!--定义服务的提供者
         delay:
@@ -54,6 +54,6 @@
         interface：服务对应的接口
         ref：接口参照的具体实现，对应bean中的id
       -->
-    <dubbo:service interface="DubboAPI.dubboServiceAPI" ref="dubboServiceAPI" />
+    <dubbo:service interface="DubboAPI.DubboServiceAPI" ref="dubboServiceAPI" />
 
 </beans>

@@ -36,6 +36,6 @@
         version:dubbo接口的版本，一定要和服务提供者提供的dubbo的接口版本一致，因为要拼接服务请求url
         check:
       -->
-    <dubbo:reference id="dubboserviceapi" interface="DubboAPI.dubboServiceAPI" group="${dubbo.Consumer.group}" version="1.0" check="false" />
+    <dubbo:reference id="dubboserviceapi" interface="DubboAPI.DubboServiceAPI" group="${dubbo.Consumer.group}" version="1.0" check="false" />
 
 </beans>
